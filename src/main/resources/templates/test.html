@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:insert="/blocks/header :: header"></header>
+<h1>Тестирование</h1>
+<form method="post" th:action="@{/test}" th:object="${firstQuestion}">
+    <h2 th:text="${firstQuestion.getText()}"></h2>
+    <input type="submit" onclick="">Начать тестирование</input>
+</form>
+<footer th:insert="/blocks/footer :: footer"></footer>
+</body>
+</html>

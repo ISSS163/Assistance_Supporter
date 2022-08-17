@@ -1,24 +1,25 @@
 package com.Assistance_Supporter.server.model;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Optional;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Answer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @EmbeddedId
+    private AnswerId id;
 
-    private String answerText;
-    @OneToOne(cascade = CascadeType.ALL)
-
+    @ManyToOne(cascade = ALL)
     private Question question;
-
+    @ManyToOne(cascade = ALL)
+    private Solution solution;
 
 }

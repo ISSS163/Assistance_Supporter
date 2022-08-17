@@ -1,17 +1,26 @@
 package com.Assistance_Supporter.server.model;
 
 import lombok.Data;
-import lombok.Setter;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 @Data
 public class Question {
     @Id
-    private String questionText;
+    private String text;
 
+    @OneToMany(mappedBy = "question")
+    List<Answer> answers;
 
+    public Question(String text, List<Answer> answers) {
+        this.text = text;
+        this.answers = answers;
+    }
+
+    public Question() {
+
+    }
 }
