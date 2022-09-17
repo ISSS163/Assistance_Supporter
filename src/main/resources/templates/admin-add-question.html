@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <header th:insert="/blocks/header :: header"></header>
-<form>
-    <input type="text">Введите текст вопроса</input>
-    <input type="text">Введите ответы на вопрос, разделенные запятыми</input>
+<form action="#"  th:action="@{/admin/addQuestionAndAnswers}" th:object="${questionDTO}" method="post">
+    <input type="text" id="textQuestion" name="textQuestion" th:field="*{text}">Введите текст вопроса</input>
+    <input type="text" id="answers" name="answers" th:field="*{answers}">Введите ответы на вопрос, разделенные запятыми</input>
+    <button type="submit" value="Submit">Добавить</button>
 </form>
 <footer th:insert="/blocks/footer :: footer"></footer>
 

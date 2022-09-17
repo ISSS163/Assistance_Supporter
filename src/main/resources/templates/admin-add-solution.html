@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <header th:insert="/blocks/header :: header"></header>
-<form>
-    <input type="text">Введите текст решения</input>
-    <select type="text">Выберите ответы, связанные с этим решением</select>
+<form action="#" th:action="@{/admin/addSolution}" method="post" th:object="${solutionDTO}">
+    <input th:field="*{name}" type="text">Введите текст решения</input>
+
+    <th:block th:each="answerFromSolution,stat : ${solutionDTO.getAnswers()}">
+        <select th:field="*{answers[__${stat.index}__]}">
+            Выберите ответы, связанные с этим решением:
+            <option th:each="answer : ${answersList}"
+                    th:text="${answer.getId().getQuestion()} + ' -> ' + ${answer.getId().getAnswerText()}"
+                    th:value="${answer}"></option>
+        </select>
+    </th:block>
+    <input type="submit">Добавить решение</input>
+</form>
+<form action="#" th:action="@{/admin/addSolution}" method="post" th:object="${solutionDTO}">
+    <input type="submit" th:name="flag" th:value="true" th:text="Добавить ответ">
 </form>
 <footer th:insert="/blocks/footer :: footer"></footer>
 </body>

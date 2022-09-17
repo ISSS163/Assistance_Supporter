@@ -1,16 +1,8 @@
 package com.Assistance_Supporter.server.middleware;
 
-import com.Assistance_Supporter.server.model.Answer;
-import com.Assistance_Supporter.server.model.AnswerId;
-import lombok.Data;
-import org.springframework.stereotype.Component;
+import lombok.experimental.UtilityClass;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-@Component
-@Data
+@UtilityClass
 public class AnswersParser {
     public static final String REGULAR_ANSWER = ", *";
 

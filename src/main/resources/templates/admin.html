@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,6 +10,17 @@
 <h1>Админская панель</h1>
 <a th:href="@{/admin/addQuestionAndAnswers}">Добавить вопрос с ответами</a>
 <a th:href="@{/admin/addSolution}">Добавить решение</a>
+<table>
+    <tr th:each="question : ${questions}">
+        <td th:text="${question.getText()}"></td>
+        <th:block th:each="questionText : ${question.getAnswers()}">
+            <td th:text="${questionText.getId().getAnswerText()}"></td>
+            <th:block th:if="${questionText.getSolution()}">
+                <td  th:text="${questionText.getSolution().getName()}"></td>
+            </th:block>
+        </th:block>
+    </tr>
+</table>
 <footer th:insert="/blocks/footer :: footer"></footer>
 </body>
 </html>

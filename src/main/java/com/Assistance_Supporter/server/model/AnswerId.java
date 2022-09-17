@@ -1,22 +1,16 @@
 package com.Assistance_Supporter.server.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Data
 @Embeddable
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class AnswerId implements Serializable {
     private String question;
     private String answerText;
 
-    public AnswerId(String question, String answerText){
-        this.answerText = answerText;
-        this.question = question;
-    }
-
-    public AnswerId() {
-
-    }
 }
